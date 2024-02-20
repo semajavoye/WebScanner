@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebScanner by Semaja Voyé</title>
+</head>
+
+<body>
+    <h1>WebScanner by Semaja Voyé</h1>
+    <div>
+        <label for="domain">Enter domain:</label>
+        <input type="text" id="domain" placeholder="Enter domain">
+    </div>
+    <div class="button-container">
+        <br>
+        <button class="button" onclick="buttonClicked('subdomains')">Subdomains</button>
+        <button class="button" onclick="buttonClicked('portscan')">Portscan</button>
+        <button class="button" onclick="buttonClicked('directoryscan')">Directoryscan</button>
+        <button class="button" onclick="buttonClicked('nmap')">Nmap</button>
+        <br>
+        <button class="button" onclick="buttonClicked('whois')">Whois</button>
+        <button class="button" onclick="buttonClicked('geoIP')">GeoIP</button>
+        <button class="button" onclick="buttonClicked('reversedns')">Reverse DNS</button>
+        <button class="button" onclick="buttonClicked('subnetcalc')">Subnetcalc</button>
+        <br>
+        <button class="button" onclick="buttonClicked('traceroute')">Traceroute</button>
+        <button class="button" onclick="buttonClicked('sslscan')">SSLscan</button>
+        <button class="button" onclick="buttonClicked('httpheaders')">HTTPheaders</button>
+        <button class="button" onclick="buttonClicked('robots')">Robots.txt</button>
+        <br>
+        <button class="button" onclick="buttonClicked('waybackmachine')">Waybackmachine</button>
+        <button class="button" onclick="buttonClicked('subdomaintakeover')">Subdomain takeover</button>
+        <button class="button" onclick="buttonClicked('subdomainbruteforce')">Subdomain brute force</button>
+    </div>
+
+    <script>
+        async function buttonClicked(buttonName) {
+            try {
+                const response = await fetch('/button-clicked', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ button: buttonName })
+                });
+                
+                const data = await response.json();
+                console.log(data); // Log the response to see if it's received correctly
+                
+                // Handle the response based on status or do something else
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>    
+</body>
+
+</html>
