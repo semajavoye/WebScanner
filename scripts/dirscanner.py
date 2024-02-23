@@ -4,6 +4,8 @@ import socket
 import requests
 from flask import Flask, request, jsonify
 
+
+# connect the route with py and let the dirs get in a callback throughout to html ui
 app = Flask(__name__)
 
 MAX_WORKERS = 13
